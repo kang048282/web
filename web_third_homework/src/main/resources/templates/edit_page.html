@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑通讯录</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>编辑通讯录</h2>
+    <form action="/contacts/edit" method="post">
+        <input type="hidden" name="id" th:value="${todo.id}">
+        <div class="form-group">
+            <label for="name">姓名:</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${todo.name}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">手机号码:</label>
+            <input type="text" class="form-control" id="phone" name="phone" th:value="${todo.phone}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">邮箱:</label>
+            <input type="email" class="form-control" id="email" name="email" th:value="${todo.email}" required>
+        </div>
+        <div class="form-group">
+            <label for="avatar">头像:</label>
+            <input type="text" class="form-control" id="avatar" name="avatar" th:value="${todo.avatar}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!-- list_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通讯录列表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>通讯录列表</h2>
+    <a href="/contacts/add" class="btn btn-primary float-right">添加通讯录</a>
+
+    <!-- 搜索表单 -->
+    <form action="/contacts/search" method="get" class="mt-3 mb-3">
+        <div class="input-group">
+            <input type="text" name="name" class="form-control" placeholder="按姓名查询" />
+            <input type="text" name="phone" class="form-control" placeholder="按手机号码查询" />
+            <button type="submit" class="btn btn-secondary">查询</button>
+        </div>
+    </form>
+
+    <!-- 通讯录列表 -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>手机号码</th>
+            <th>邮箱</th>
+            <th>头像</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${contacts}">
+            <td th:text="${contact.name}"></td>
+            <td th:text="${contact.phone}"></td>
+            <td th:text="${contact.email}"></td>
+            <td>
+                <img th:src="@{${contact.avatar}}" alt="头像" width="50">
+            </td>
+            <td>
+                <!-- 使用 th:href 动态生成链接 -->
+                <a th:href="@{/contacts/edit(id=${contact.id})}" class="btn btn-success btn-sm">编辑</a>
+                <a th:href="@{/contacts/delete(id=${contact.id})}" class="btn btn-danger btn-sm">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

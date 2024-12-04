@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>搜索结果</title>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>搜索结果</h2>
+
+  <!-- 显示查询结果 -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th>姓名</th>
+      <th>手机号码</th>
+      <th>邮箱</th>
+      <th>头像</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${contacts}">
+      <td th:text="${contact.name}"></td>
+      <td th:text="${contact.phone}"></td>
+      <td th:text="${contact.email}"></td>
+      <td>
+        <img th:src="@{${contact.avatar}}" alt="头像" width="50">
+      </td>
+      <td>
+        <a href="/contacts/edit?id=${contact.id}" class="btn btn-success btn-sm">编辑</a>
+        <a href="/contacts/delete?id=${contact.id}" class="btn btn-danger btn-sm">删除</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- 返回按钮 -->
+  <a href="/contacts" class="btn btn-primary">返回通讯录</a>
+</div>
+
+</body>
+</html>
